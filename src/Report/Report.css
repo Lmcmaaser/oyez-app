@@ -1,0 +1,54 @@
+/* This applies from 0px to 600px */
+
+
+/* This applies from 600px onwards */
+@media (min-width: 600px) {
+  .main_content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+
+  h3 {
+    margin: 10px;
+    font-size: 22px;
+  }
+
+  .form_group {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    background-color: lightgrey;
+    border: none;
+  }
+
+  label {
+    margin: 5px;
+  }
+
+  input[type=text] {
+    margin: 5px;
+    padding: 5px;
+    width: 50%;
+    height: 35px;
+  }
+
+  input[type=radio] {
+    margin: 5px;
+    padding: 5px;
+    height: 15px;
+    width: 15px;
+  }
+
+  button {
+    margin: 10px;
+    padding: 5px;
+  }
+}

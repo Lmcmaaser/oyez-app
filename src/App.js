@@ -10,7 +10,7 @@ export default class App extends Component {
     data: {
       reports: [],
       states: [],
-      zip: []
+      zip_codes: []
     }
   };
   render () {
@@ -24,7 +24,7 @@ export default class App extends Component {
             </nav>
             <main className="container" role="main">
               <header className="header" role="banner">
-                <h1>COVID-19 Watch</h1>
+                <h1>Oyez</h1>
               </header>
               <div className='main_content'>
                 <h3>How to Use This App</h3>
