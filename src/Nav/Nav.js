@@ -1,14 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Content from '../content'
-import './Nav.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Content from '../content';
+import './Nav.css';
 
-export default class Nav extends React.Componenent {
+export default class Nav extends React.Component {
   render () {
     return (
       <Content className='Nav'>
         <Link to='/'>
-          Home Page
+          Home
         </Link>
         <Link to='/report'>
           Report

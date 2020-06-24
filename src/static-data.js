@@ -1,5 +1,5 @@
 export default {
-  "states": [
+  "us_states": [
     {
       "stateid": "a87213d2-b585-11ea-b3de-0242ac130004",
       "state_name": "Arizona",
@@ -31,7 +31,7 @@ export default {
     },
     {
       "reportid": "a469b766-b591-11ea-b3de-0242ac130004",
-      "stateid": "a87213d2-b585-11ea-b3de-0242ac130004"
+      "stateid": "a87213d2-b585-11ea-b3de-0242ac130004",
       "zipid": "76bc21e6-b591-11ea-b3de-0242ac130004",
       "date": "",
       "household": 2
