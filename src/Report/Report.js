@@ -105,7 +105,7 @@ export default class Report extends React.Component {
                   {this.state.zip_code.touched && (
                     <ValidationError message={zipCodeError} id="zip_code_error" />
                   )}
-              <label classNameName="raido_label" htmlFor="diagnosis_type">
+              <label className="raido_label" htmlFor="diagnosis_type">
                 How were you diagnosed?
               </label>
                 <label htmlFor="container">
@@ -117,7 +117,7 @@ export default class Report extends React.Component {
                     aria-label="select test diagnosis type"
                     onChange={event => this.updateDiagnosisType(event.target.value)}
                   />
-                  <span classNameName="checkmark"></span>
+                  <span className="checkmark"></span>
                  Tested positive</label>
                 <label htmlFor="container">
                   <input
@@ -128,7 +128,7 @@ export default class Report extends React.Component {
                     aria-label="select doctor diagnosis type"
                     onChange={event => this.updateDiagnosisType(event.target.value)}
                   />
-                  <span classNameName="checkmark"></span>
+                  <span className="checkmark"></span>
                 A doctor's professional assessment of my symptoms (diagnosis made without a test)</label>
                 <label htmlFor="container">
                   <input
@@ -139,7 +139,7 @@ export default class Report extends React.Component {
                     aria-label="select self diagnosis type"
                     onChange={event => this.updateDiagnosisType(event.target.value)}
                   />
-                  <span classNameName="checkmark"></span>
+                  <span className="checkmark"></span>
                 I self-diagnosed based on my symptoms</label>
                 <div>If you were tested and diagnosed by your doctor, select the tested option.</div>
               <label>When were you diagnosed? </label>
@@ -166,7 +166,7 @@ export default class Report extends React.Component {
                 />
               <button
                 type="submit"
-                classNameName="submit-button"
+                className="submit-button"
                 aria-label="submit-button"
                 // disabled={
                 // this.validateName() ||

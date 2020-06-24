@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Nav from './Nav/Nav';
-import Blurb from './Blurb/Blurb'
-import Data from './Data/Data'
-import Report from './Report/Report'
+import Blurb from './Blurb/Blurb';
+import ShowAll from './ShowAll/ShowAll';
+import ShowState from './ShowState/ShowState';
+import ShowZipCode from './ShowZipCode/ShowZipCode';
+import Report from './Report/Report';
 import Footer from './Footer/Footer';
 import ApiContext from './ApiContext'
 import './App.css';
@@ -31,6 +33,7 @@ export default class App extends Component {
       reports: this.state.reports.concat(report)
     })
   }
+
   render () {
     const contextValue = {
       us_states: this.state.us_states,
@@ -50,7 +53,9 @@ export default class App extends Component {
             <main className="main_content" role="main">
               <Route exact path='/' component={Blurb}/>
               <Route path='/report' component={Report} />
-              <Route path='/data' component={Data} />
+              <Route path='/all' component={ShowAll} />
+              <Route path='/state' component={ShowState} />
+              <Route path='/zipcode' component={ShowZipCode} />
             </main>
           </ApiContext.Provider>
           <footer>

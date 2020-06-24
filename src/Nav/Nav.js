@@ -13,8 +13,14 @@ export default class Nav extends React.Component {
         <Link to='/report'>
           Report
         </Link>
-        <Link to='/data'>
-          Data
+        <Link to='/all'>
+          View All Reports
+        </Link>
+        <Link to='/state'>
+          View by State
+        </Link>
+        <Link to='/zipcode'>
+          View by Zip Code
         </Link>
       </Content>
     )
