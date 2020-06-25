@@ -4,15 +4,12 @@ import ApiContext from '../ApiContext';
 import ValidationError from '../ValidationError';
 import './Report.css';
 
+//To Do: add a success message
 export default class Report extends React.Component {
   static contextType = ApiContext;
   constructor(props) {
     super(props)
     this.state = {
-      state_name: {
-        value: '',
-        touched: false
-      },
       zip_code: {
         value: '',
         touched: false
@@ -32,16 +29,16 @@ export default class Report extends React.Component {
     }
   }
 
-  updateStateName(state_name) {
-    this.setState({state_name: {value: state_name, touched: true}});
-  }
   updateZipCode(zip_code) {
+    console.log(zip_code);
     this.setState({zip_code: {value: zip_code, touched: true}});
   }
   updateDate(date) {
+    console.log(date);
     this.setState({date: {value: date, touched: true}});
   }
   updateDiagnosisType(diagnosis_type) {
+    console.log(diagnosis_type);
     this.setState({diagnosis_type: {value: diagnosis_type, touched: true}});
   }
   updateHousehold(household) {
@@ -50,48 +47,85 @@ export default class Report extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { state_name, zip_code, diagnosis_type, date, household} = this.state;
+    const { zip_code, diagnosis_type, date, household} = this.state;
     const uuid = uuidv4();
     const report = {
-      reortid: uuid,
-      state_name: state_name.value,
+      reportid: uuid,
+      stateid: event.target.stateid.value,
       diagnosis_type: diagnosis_type.value,
       zip_code: zip_code.value,
       date: date.value,
       household: household.value
     }
+    console.log(report);
+    /* Shows:
+    date: "2020-06-11"
+    diagnosis_type: "doctor"
+    household: "2"
+    reportid: "7c89fcf6-8a7e-4c03-910a-513edd3a3c5b"
+    stateid: "1"
+    zip_code: "35004"*/
     this.context.addReport(report);
+    this.resetForm();
   }
 
-  validateZipCode() {
-    const zip_code = this.state.zip_code.value.trim();
-    if (zip_code.length === 0) {
-      return "Zip code is required"
-    } else if (zip_code.length > 5) {
-      return "Zip code can only be 5 digits long"
-    } else if (!zip_code.match(/[0-9]/)) {
-      return "Zip code may only contain numbers"
-    }
+  resetForm() {
+    this.setState({
+      zip_code: {
+        value: '',
+        touched: false
+      },
+      date: {
+        value: '',
+        touched: false
+      },
+      diagnosis_type: {
+        value: '',
+        touched: false
+      },
+      household: {
+        value: '',
+        touched: false
+      }
+    })
+    document.querySelector('input[name="diagnosis_type"]:checked').checked = false;
   }
+
+  // validateZipCode() {
+  //   const zip_code = this.state.zip_code.value.trim();
+  //   if (zip_code.length > 5) {
+  //     return "Zip code can only be 5 digits long"
+  //   } else if (!zip_code.match(/[0-9]/)) {
+  //     return "Zip code may only contain numbers"
+  //   }
+  // }
+  //
+  // validateHousehold() {
+  //   const household = this.state.household.value.trim();
+  //   if (!household.match(/[0-9]/)) {
+  //     return "Your response may only contain a numbers"
+  //   }
+  // }
 
   render() {
-    const zipCodeError = this.validateZipCode();
+    // const zipCodeError = this.validateZipCode();
+    // const householdError = this.validateHousehold();
     return (
       <div>
         <h3>Submit a Report</h3>
         <form className="form-group" onSubmit={event => this.handleSubmit(event)}>
           <fieldset>
             <legend>Report Form</legend>
-              <label>What state do you live in?</label>
-                <input
-                  type="text"
-                  required
-                  name="state_name"
-                  id="state_name"
-                  aria-label="input state"
-                  value={this.state.state_name.value}
-                  onChange={event => this.updateStateName(event.target.value)}
-                />
+              <label className="reportState" htmlFor="reportState">What state do you live in? *</label>
+              <select
+                name="stateid"
+                required
+                aria-label="select state"
+              >
+                {this.context.us_states.map(us_state =>
+                  <option key={us_state.stateid} value={us_state.stateid}>{us_state.name}</option>
+                )}
+              </select>
               <label>What is your zip code?</label>
                 <input
                   type="text"
@@ -102,9 +136,7 @@ export default class Report extends React.Component {
                   value={this.state.zip_code.value}
                   onChange={event => this.updateZipCode(event.target.value)}
                 />
-                  {this.state.zip_code.touched && (
-                    <ValidationError message={zipCodeError} id="zip_code_error" />
-                  )}
+
               <label className="raido_label" htmlFor="diagnosis_type">
                 How were you diagnosed?
               </label>
@@ -164,14 +196,11 @@ export default class Report extends React.Component {
                   value={this.state.household.value}
                   onChange={event => this.updateHousehold(event.target.value)}
                 />
+
               <button
                 type="submit"
                 className="submit-button"
                 aria-label="submit-button"
-                // disabled={
-                // this.validateName() ||
-                // this.validateAge()
-                // }
               >
                 Submit
               </button>

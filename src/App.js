@@ -14,8 +14,7 @@ export default class App extends Component {
   static defaultProps = {
     data: {
       reports: [],
-      us_states: [],
-      zip_codes: []
+      us_states: []
     }
   };
 
@@ -23,10 +22,9 @@ export default class App extends Component {
     super(props)
     this.state = {
       reports: this.props.data.reports,
-      us_states: this.props.data.us_states,
-      zip_codes: this.props.data.zip_codes
+      us_states: this.props.data.us_states
     }
-  }
+  };
 
   handleAddReport = report => {
     this.setState({
@@ -37,7 +35,6 @@ export default class App extends Component {
   render () {
     const contextValue = {
       us_states: this.state.us_states,
-      zip_codes: this.state.zip_codes,
       reports: this.state.reports,
       addReport: this.handleAddReport,
     }
@@ -62,6 +59,6 @@ export default class App extends Component {
             <Footer />
           </footer>
       </div>
-    );
+    )
   }
-}
+};
