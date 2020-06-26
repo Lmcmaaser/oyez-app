@@ -47,19 +47,26 @@ export default class ShowAll extends React.Component {
 
   //create an array of objects with state name as key and report number as value.
   render() {
-    console.log(this.context.us_states);
-    let selectedValues = this.context.reports.map(report => {
-      return this.context.us_states.find(us_state => {
-        if (report.stateid === us_state.id) {
-          return true
-        }
-      })
-    });
-    console.log(selectedValues);
+    console.log(this.context.us_states); //shows
+    console.log(this.context.reports); //shows
 
-    for (let i = 0; i < this.context.reports.length; i++) {
+    let selectedValues = [];
+    this.context.reports.forEach(report => {
+      let existingValue = selectedValues.find(value => value.stateid === report.stateid);
+        if (existingValue === undefined) {
+          selectedValues.push({
+            stateid: report.stateid,
+            name: this.context.us_states.find(state => state.stateid === report.stateid),
+            count: 1
+          });
+        } else {
+        existingValue.count++;
+      }
+    });
+
+    for (let i = 0; i < selectedValues.length; i++) {
       dataPoints.push({
-        label: this.context.reports[i].stateid,
+        label: selectedValues[i].name,
         y: 3
       });
     }
@@ -69,7 +76,7 @@ export default class ShowAll extends React.Component {
       },
       data: [
         {
-          // Change type to "doughnut", "line", "splineArea", etc.
+          
           type: "column",
           dataPoints: dataPoints
         }
