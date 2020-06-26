@@ -5,8 +5,6 @@ import CanvasJSReact from '../canvasjs-2.3.2/canvasjs.react';
 let CanvasJS = CanvasJSReact.CanvasJS;
 let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-
-// this has a bug
 export default class ShowAll extends React.Component {
   static contextType = ApiContext;
   render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ApiContext from '../ApiContext';
-// import ValidationError from '../ValidationError';
+import ValidationError from '../ValidationError';
 import './Report.css';
 
 //To Do: add a success message
@@ -84,25 +84,25 @@ export default class Report extends React.Component {
     document.querySelector('input[name="diagnosis_type"]:checked').checked = false;
   }
 
-  // validateZipCode() {
-  //   const zip_code = this.state.zip_code.value.trim();
-  //   if (zip_code.length > 5) {
-  //     return "Zip code can only be 5 digits long"
-  //   } else if (!zip_code.match(/[0-9]/)) {
-  //     return "Zip code may only contain numbers"
-  //   }
-  // }
-  //
-  // validateHousehold() {
-  //   const household = this.state.household.value.trim();
-  //   if (!household.match(/[0-9]/)) {
-  //     return "Your response may only contain a numbers"
-  //   }
-  // }
+  validateZipCode() {
+    const zip_code = this.state.zip_code.value.trim();
+    if (zip_code.length > 5) {
+      return "Zip code can only be 5 digits long"
+    } else if (!zip_code.match(/[0-9]/)) {
+      return "Zip code may only contain numbers"
+    }
+  }
+
+  validateHousehold() {
+    const household = this.state.household.value.trim();
+    if (!household.match(/[0-9]/)) {
+      return "Your response may only contain a numbers"
+    }
+  }
 
   render() {
-    // const zipCodeError = this.validateZipCode();
-    // const householdError = this.validateHousehold();
+    const zipCodeError = this.validateZipCode();
+    const householdError = this.validateHousehold();
     return (
       <div>
         <h3>Submit a Report</h3>
@@ -129,7 +129,9 @@ export default class Report extends React.Component {
                   value={this.state.zip_code.value}
                   onChange={event => this.updateZipCode(event.target.value)}
                 />
-
+                  {this.state.zip_code.touched && (
+                    <ValidationError message={zipCodeError} />
+                  )}
               <label className="raido_label" htmlFor="diagnosis_type">
                 How were you diagnosed?
               </label>
@@ -189,6 +191,9 @@ export default class Report extends React.Component {
                   value={this.state.household.value}
                   onChange={event => this.updateHousehold(event.target.value)}
                 />
+                  {this.state.household.touched && (
+                    <ValidationError message={householdError} />
+                  )}
 
               <button
                 type="submit"

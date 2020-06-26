@@ -7,31 +7,69 @@ let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class ShowState extends React.Component {
   static contextType = ApiContext;
-
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     selectedState: []
+  //   };
+  // }
   handleSubmit(event) {
     event.preventDefault();
     const us_state = {
       stateid: event.target.stateid.value,
     }
-    console.log(us_state);
+    console.log(us_state); // returns {stateid: "44"}
+    //passState(us_state);
   }
 
+  // passState() {
+  //   let selectedState = []
+  //   return this.context.reports.find(report => {
+  //
+  //   })
+  // }
+
   render() {
-    let dataPoints =[];
+    // pass us_state into the render
+    //take stateid value from us_state and find in reports
+    // call pas
+    let dataPoints =  [];
+    let selectedValues = [];
+    this.context.reports.forEach(report => {
+      let existingValue = selectedValues.find(value => value.stateid === report.stateid);
+        if (existingValue === undefined) {
+          selectedValues.push({
+            stateid: report.stateid,
+            date: this.context.us_states.find(us_state => us_state.stateid === report.stateid).date,
+            count: 1
+          });
+        } else {
+        existingValue.count++;
+      }
+    });
+    console.log(selectedValues);
+
+    for (let i = 0; i < selectedValues.length; i++) {
+      dataPoints.push({
+        label: selectedValues[i].date,
+        y: selectedValues[i].count
+      });
+    }
+
     const options = {
 			theme: "light2",
 			title: {
-				text: "State Reports Over Time"
+				text: "Reports Over Time"
+          //{ message: `Reports Over Time for the state of '${us_state.stateid}'`}
 			},
 			axisY: {
 				title: "Number of Reports",
-				// prefix: "$",
-				includeZero: false
+				includeZero: true
 			},
 			data: [{
 				type: "line",
-				xValueFormatString: "MMM YYYY",
-				yValueFormatString: "$#,##0.00",
+				xValueFormatString: "0000-00-00",
+				y: " ",
 				dataPoints: dataPoints
 			}]
 		}
@@ -54,6 +92,7 @@ export default class ShowState extends React.Component {
                 type="submit"
                 className="submit-button"
                 aria-label="submit-button"
+                //onClick={event =>
               >
                 Submit
               </button>

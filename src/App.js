@@ -36,7 +36,7 @@ export default class App extends Component {
     const contextValue = {
       us_states: this.state.us_states,
       reports: this.state.reports,
-      addReport: this.handleAddReport,
+      addReport: this.handleAddReport
     }
     return (
       <div className="App">
