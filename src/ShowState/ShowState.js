@@ -7,32 +7,36 @@ let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class ShowState extends React.Component {
   static contextType = ApiContext;
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     selectedState: []
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedState: []
+    };
+  }
   handleSubmit(event) {
     event.preventDefault();
     const us_state = {
       stateid: event.target.stateid.value,
     }
     console.log(us_state); // returns {stateid: "44"}
-    //passState(us_state);
+    this.getPassedState(us_state);
   }
 
-  // passState() {
-  //   let selectedState = []
-  //   return this.context.reports.find(report => {
-  //
-  //   })
-  // }
+  getPassedState() {
+    //pass in an object & iterate over us_states array of objects
+    console.log(this.context.us_states); //shows all states
+    for (let i = 0; i < this.context.us_states.length; i++) {
+      //find obj's match in us_states
+      if (us_state => us_state.stateid === this.context.us_states[i]) {
+        return this.state.selectedState.push(this.context.us_states[i])
+      }
+    }
+    console.log(this.state.selectedState);//should be an array with the user selected state, is not getting called
+  }
 
   render() {
-    // pass us_state into the render
-    //take stateid value from us_state and find in reports
-    // call pas
+    // let passedState = this.getPassedState(us_state)
+    // console.log(passedState);
     let dataPoints =  [];
     let selectedValues = [];
     this.context.reports.forEach(report => {
@@ -47,7 +51,7 @@ export default class ShowState extends React.Component {
         existingValue.count++;
       }
     });
-    console.log(selectedValues);
+    console.log(selectedValues); // selectedValues = [{stateid: "44", date: undefined, count: 3}, {stateid: "3", date: undefined, count: 1}]
 
     for (let i = 0; i < selectedValues.length; i++) {
       dataPoints.push({
