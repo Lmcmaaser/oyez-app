@@ -5,51 +5,79 @@ import CanvasJSReact from '../canvasjs-2.3.2/canvasjs.react';
 let CanvasJS = CanvasJSReact.CanvasJS;
 let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 let dataPoints =  [];
+let pick = require('object.pick'); // Returns a filtered copy of an object with only the specified keys
+// function takes two arguments where the first one will object (which we are filtering) and second will be a collection of key names which we want to extract from a given object.
+
+//create new array (displayArr?) and use it like dataPoints
+// sum all reports for each stateid
+// translate each state id into state name
 export default class ShowAll extends React.Component {
   static contextType = ApiContext;
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     stateNameArr: []
+  //   }
+  // }
 
-  //maybe?
-  static defaultProps = {
-    match: {
-      params: {}
-    }
+  barGraphArr() {
+    let selectedValues = this.context.reports.map(function (report) {
+      return report.stateid
+    })
+    console.log(selectedValues);
+    // this.context.reports.map
+    // let selectedValues = [...this.state.stateNameArr];
+    // selectedValues = pick(us_states, ['name']);
+    // console.log(selectedValues)
+
+    // return us_states.filter((us_state) => {
+    //   if (this.state.stateNameArr.length === 0)
+    // })
+    // for (let i = 0; i < this.context.us_states.length; i++) {
+    //   //iterate over us_states array
+    //   console.log(i);
+    // }
   }
+  //// Object.keys(arr).length;
+  // idToName() {
+  //   //pass in us_states array,
+  //   pull out all
+  // }
 
-  // componentDidMount(){
-	// 	let chart = this.chart;
-  //     let [ reports ] = this.context;
-	// 		for (let i = 0; i < reports.length; i++) {
-	// 			dataPoints.push({
-	// 				label: reports[i].stateid,
-	// 				y: 3
-	// 			});
-	// 		}
-	// 		chart.render();
-	// }
+
+  //create an array of objects with state name as key and report number as value.
   render() {
-    // let [ reports ] = this.context; //local copy of reports array
+    console.log(this.context.us_states); //shows all states
+    let selectedValues = this.context.reports.map(function (report) {
+      return this.context.us_states.find(function (state) {
+        if (report.stateid === state.id) {
+          return true
+        }
+        // us_state => us_state.id === report.stateid)
+      })
+      console.log(selectedValues);
+    }
 
-    //create new array (displayArr?) and use it like dataPoints
-    // sum all reports for each stateid
-    // translate each state id into state name
-  			for (let i = 0; i < this.context.reports.length; i++) {
-  				dataPoints.push({
-  					label: this.context.reports[i].stateid,
-  					y: 3
-  				});
-  			}
+    for (let i = 0; i < this.context.reports.length; i++) {
+      dataPoints.push({
+        label: this.context.reports[i].stateid,
+        y: 3
+      });
+    }
     const options = {
-			title: {
-				text: "All reported instances by state"
-			},
+      title: {
+        text: "All reported instances by state"
+      },
       data: [
-			{
-				// Change type to "doughnut", "line", "splineArea", etc.
-				type: "column",
-				dataPoints: dataPoints
-			}
-			]
-		}
+        {
+          // Change type to "doughnut", "line", "splineArea", etc.
+          type: "column",
+          dataPoints: dataPoints
+        }
+      ]
+    }
+
+
     return (
       <div>
         <h3>

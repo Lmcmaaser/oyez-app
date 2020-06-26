@@ -13,7 +13,7 @@ export default {
       "stateid": "3",
       "zipcode": "85308",
       "date": "2020-05-03",
-      "diagnosis_type": "test",
+      "diagnosis_type": "doctor",
       "household": "2"
     },
     {
@@ -21,7 +21,7 @@ export default {
       "stateid": "44",
       "zipcode": "73301",
       "date": "2020-06-20",
-      "diagnosis_type": "test",
+      "diagnosis_type": "self",
       "household": "3"
     },
     {

@@ -4,7 +4,7 @@ const ApiContext = React.createContext({
   reports: [],
   us_states: [],
   addReport: () => {},
-  showData: () => {}
+  // showData: () => {}
 });
 
 export default ApiContext;
