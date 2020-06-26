@@ -47,16 +47,15 @@ export default class ShowAll extends React.Component {
 
   //create an array of objects with state name as key and report number as value.
   render() {
-    console.log(this.context.us_states); //shows all states
     let selectedValues = this.context.reports.map(function (report) {
-      return this.context.us_states.find(function (state) {
-        if (report.stateid === state.id) {
+      return this.context.us_states.find(function (us_state) {
+        if (report.stateid === us_state.id) {
           return true
         }
         // us_state => us_state.id === report.stateid)
       })
-      console.log(selectedValues);
-    }
+    })
+    console.log(selectedValues);
 
     for (let i = 0; i < this.context.reports.length; i++) {
       dataPoints.push({
