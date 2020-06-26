@@ -58,13 +58,6 @@ export default class Report extends React.Component {
       household: household.value
     }
     console.log(report);
-    /* Shows:
-    date: "2020-06-11"
-    diagnosis_type: "doctor"
-    household: "2"
-    reportid: "7c89fcf6-8a7e-4c03-910a-513edd3a3c5b"
-    stateid: "1"
-    zip_code: "35004"*/
     this.context.addReport(report);
     this.resetForm();
   }

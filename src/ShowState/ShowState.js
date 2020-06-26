@@ -4,10 +4,20 @@ import CanvasJSReact from '../canvasjs-2.3.2/canvasjs.react';
 let CanvasJS = CanvasJSReact.CanvasJS;
 let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-let dataPoints =[];
+
 export default class ShowState extends React.Component {
   static contextType = ApiContext;
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const us_state = {
+      stateid: event.target.stateid.value,
+    }
+    console.log(us_state);
+  }
+
   render() {
+    let dataPoints =[];
     const options = {
 			theme: "light2",
 			title: {
@@ -27,7 +37,7 @@ export default class ShowState extends React.Component {
 		}
     return (
       <div>
-        <form>
+        <form className="form-group" onSubmit={event => this.handleSubmit(event)}>
           <fieldset>
             <legend>Select state</legend>
               <label className="reportState" htmlFor="reportState">Select a State*</label>
@@ -40,10 +50,16 @@ export default class ShowState extends React.Component {
                   <option key={us_state.stateid} value={us_state.stateid}>{us_state.name}</option>
                 )}
               </select>
+              <button
+                type="submit"
+                className="submit-button"
+                aria-label="submit-button"
+              >
+                Submit
+              </button>
           </fieldset>
         </form>
         <div className='results_group'>
-          <div>Section Displays graph</div>
           <div className="canvas">
             <CanvasJSChart options = {options}
 				      onRef={ref => this.chart = ref}
