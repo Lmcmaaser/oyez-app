@@ -1,7 +1,7 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ApiContext from '../ApiContext';
-import ValidationError from '../ValidationError';
+// import ValidationError from '../ValidationError';
 import './Report.css';
 
 //To Do: add a success message

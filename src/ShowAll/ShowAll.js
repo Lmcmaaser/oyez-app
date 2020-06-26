@@ -4,18 +4,13 @@ import CanvasJSReact from '../canvasjs-2.3.2/canvasjs.react';
 
 let CanvasJS = CanvasJSReact.CanvasJS;
 let CanvasJSChart = CanvasJSReact.CanvasJSChart;
-let dataPoints =  [];
 
-//create new array (displayArr?) and use it like dataPoints
-// sum all reports for each stateid
-// translate each state id into state name
+
+// this has a bug
 export default class ShowAll extends React.Component {
   static contextType = ApiContext;
-  //create an array of objects with state name as key and report number as value.
   render() {
-    console.log(this.context.us_states); //shows
-    console.log(this.context.reports); //shows
-
+    let dataPoints =  [];
     let selectedValues = [];
     this.context.reports.forEach(report => {
       let existingValue = selectedValues.find(value => value.stateid === report.stateid);
@@ -38,19 +33,24 @@ export default class ShowAll extends React.Component {
       });
     }
     const options = {
-      title: {
-        text: "Self-reported Instances of COVID-19 by State"
-      },
+      animationEnabled: true,
+			theme: "light2",
+			title:{
+				text: "Self-reported Instances of COVID-19 by State"
+			},
+			axisX: {
+				title: "States",
+			},
+			axisY: {
+				title: "Number of reports",
+			},
       data: [
         {
-
-          type: "column",
+          type: "bar",
           dataPoints: dataPoints
         }
       ]
     }
-
-
     return (
       <div>
         <h3>
@@ -58,7 +58,7 @@ export default class ShowAll extends React.Component {
         </h3>
         <div className='results_group'>
           <CanvasJSChart options = {options}
-				      onRef={ref => this.chart = ref}
+				    onRef={ref => this.chart = ref}
 			    />
         </div>
       </div>
