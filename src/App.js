@@ -14,7 +14,8 @@ export default class App extends Component {
   static defaultProps = {
     data: {
       reports: [],
-      us_states: []
+      us_states: [],
+      zipcodes: []
     }
   };
 
@@ -22,7 +23,8 @@ export default class App extends Component {
     super(props)
     this.state = {
       reports: this.props.data.reports,
-      us_states: this.props.data.us_states
+      us_states: this.props.data.us_states,
+      zipcodes: this.props.data.zipcodes
     }
   };
 
@@ -32,11 +34,19 @@ export default class App extends Component {
     })
   }
 
+  handleAddZipCode = zipcode => {
+    this.setState({
+      zipcodes: this.state.zipcodes.concat(zipcode)
+    })
+  }
+
   render () {
     const contextValue = {
       us_states: this.state.us_states,
+      zipcodes: this.state.zipcodes,
       reports: this.state.reports,
-      addReport: this.handleAddReport
+      addReport: this.handleAddReport,
+      addZipCode: this.handleAddZipCode
     }
     return (
       <div className="App">

@@ -10,7 +10,7 @@ export default class Report extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      zip_code: {
+      code: {
         value: '',
         touched: false
       },
@@ -29,9 +29,9 @@ export default class Report extends React.Component {
     }
   }
 
-  updateZipCode(zip_code) {
-    console.log(zip_code);
-    this.setState({zip_code: {value: zip_code, touched: true}});
+  updateZipCode(code) {
+    console.log(code);
+    this.setState({code: {value: code, touched: true}});
   }
   updateDate(date) {
     console.log(date);
@@ -47,24 +47,30 @@ export default class Report extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { zip_code, diagnosis_type, date, household} = this.state;
+    const { diagnosis_type, date, household} = this.state;
+    const { code } = this.state;
     const uuid = uuidv4();
+    const zipcode = {
+      zipcodeid: uuid,
+      code: code.value
+    }
     const report = {
       reportid: uuid,
       stateid: event.target.stateid.value,
       diagnosis_type: diagnosis_type.value,
-      zip_code: zip_code.value,
       date: date.value,
       household: household.value
     }
     console.log(report);
+    console.log(zipcode);
     this.context.addReport(report);
+    this.context.addZipCode(zipcode);
     this.resetForm();
   }
 
   resetForm() {
     this.setState({
-      zip_code: {
+      code: {
         value: '',
         touched: false
       },
@@ -85,7 +91,7 @@ export default class Report extends React.Component {
   }
 
   validateZipCode() {
-    const zip_code = this.state.zip_code.value.trim();
+    const zip_code = this.state.code.value.trim();
     if (zip_code.length > 5) {
       return "Zip code can only be 5 digits long"
     } else if (!zip_code.match(/[0-9]/)) {
@@ -123,13 +129,13 @@ export default class Report extends React.Component {
                 <input
                   type="text"
                   required
-                  name="zip_code"
-                  id="zip_code"
+                  name="code"
+                  id="code"
                   aria-label="input zip code"
-                  value={this.state.zip_code.value}
+                  value={this.state.code.value}
                   onChange={event => this.updateZipCode(event.target.value)}
                 />
-                  {this.state.zip_code.touched && (
+                  {this.state.code.touched && (
                     <ValidationError message={zipCodeError} />
                   )}
               <label className="raido_label" htmlFor="diagnosis_type">
@@ -199,6 +205,10 @@ export default class Report extends React.Component {
                 type="submit"
                 className="submit-button"
                 aria-label="submit-button"
+                disabled={
+                this.validateZipCode() ||
+                this.validateHousehold()
+                }
               >
                 Submit
               </button>

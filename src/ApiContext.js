@@ -3,7 +3,9 @@ import React from 'react';
 const ApiContext = React.createContext({
   reports: [],
   us_states: [],
-  addReport: () => {}
+  zipcodes: [],
+  addReport: () => {},
+  addZipCode: () => {}
 });
 
 export default ApiContext;

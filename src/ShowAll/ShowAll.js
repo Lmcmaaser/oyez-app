@@ -2,7 +2,7 @@ import React from 'react';
 import ApiContext from '../ApiContext'
 import CanvasJSReact from '../canvasjs-2.3.2/canvasjs.react';
 
-let CanvasJS = CanvasJSReact.CanvasJS;
+//let CanvasJS = CanvasJSReact.CanvasJS;
 let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class ShowAll extends React.Component {
@@ -22,7 +22,7 @@ export default class ShowAll extends React.Component {
         existingValue.count++;
       }
     });
-    console.log(selectedValues);
+    console.log(selectedValues); //array of objects
 
     for (let i = 0; i < selectedValues.length; i++) {
       dataPoints.push({
