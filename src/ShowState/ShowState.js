@@ -35,34 +35,49 @@ export default class ShowState extends React.Component {
     });
   }
 
-  render() {
-    //date & number of reports
-  let dataPoints =  [];
-  let selectedValues = [];
-  let existingValues = this.context.reports;
-  let filteredReports = this.getFilteredReports(existingValues);
-  console.log(filteredReports);
-  let count = 0;
-
-  for (let i = 0; i < filteredReports.length; i++) {
-    count++
-  }
-  console.log(count);
-
-  for (let i = 0; i < filteredReports.length; i++) {
-    selectedValues.push({
-      label: filteredReports[i].date
+  duplicateDates = (arr) => {
+    const dups = {}
+    arr.forEach(date => {
+      if(Object.keys(dups).includes(date.label)) {
+        dups[date.label]++
+      } else {
+        dups[date.label] = 1
+      }
     })
-  } // [{label: "2020-06-24"}]
-  console.log(selectedValues);
-
-  for (let i = 0; i < selectedValues.length; i++) {
-    let labelValues = Object.values(selectedValues[i]);
+    return dups
   }
-  let labelValues = Object.values(selectedValues);
-  console.log(labelValues);
 
+  render() {
+  //date & number of reports
+    let dataPoints =  [];
+    let selectedValues = [];
+    let existingValues = this.context.reports;
+    let filteredReports = this.getFilteredReports(existingValues);
 
+    for (let i = 0; i < filteredReports.length; i++) {
+      selectedValues.push({
+        label: filteredReports[i].date
+      })
+    } // [{label: "2020-06-24"}...etc] contains duplicate values
+    console.log(selectedValues);
+
+    //remove duplicate date labels
+    let jsonObject = selectedValues.map(JSON.stringify);
+    let uniqueSet = new Set(jsonObject);
+    let uniqueArray = Array.from(uniqueSet).map(JSON.parse);
+    console.log(uniqueArray); //[{label: "2020-06-24"}, {label: "2020-06-20"}, {label: "2020-06-15"}]
+
+    let dateOccurences = this.duplicateDates(selectedValues);
+    console.log(dateOccurences); // {2020-06-15: 1, 2020-06-20: 2, 2020-06-24: 1}
+
+    let dateCount = Object.values(dateOccurences);
+    let yObj = [];
+    for (let i = 0; i < dateCount.length; i++) {
+      yObj.push({
+        y: dateCount[i]
+      });
+    }
+    console.log(yObj); //[{y:1}, {y: ...etc.]
 
 
     const options = {
@@ -78,7 +93,7 @@ export default class ShowState extends React.Component {
 			data: [{
 				type: "line",
 				xValueFormatString: "0000-00-00",
-				y: " ",
+				y: "",
 				dataPoints: dataPoints
 			}]
 		}

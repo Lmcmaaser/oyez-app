@@ -80,7 +80,7 @@ export default class ShowZipCode extends React.Component {
 
     // add desired objects to dataPoints array
     dataPoints.push(testPoints, doctorPoints, selfPoints);
-    console.log(dataPoints);
+    console.log(dataPoints); 
 
 
     const options = {
