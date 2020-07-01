@@ -3,7 +3,6 @@ import ApiContext from '../ApiContext'
 import CanvasJSReact from '../canvasjs-2.3.2/canvasjs.react';
 let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-
 export default class ShowState extends React.Component {
   static contextType = ApiContext;
   constructor(props) {
@@ -69,7 +68,6 @@ export default class ShowState extends React.Component {
 
     let dateOccurences = this.duplicateDates(selectedValues);
     console.log(dateOccurences); // {2020-06-15: 1, 2020-06-20: 2, 2020-06-24: 1}
-
     let dateCount = Object.values(dateOccurences);
     let yObj = [];
     for (let i = 0; i < dateCount.length; i++) {
@@ -79,6 +77,14 @@ export default class ShowState extends React.Component {
     }
     console.log(yObj); //[{y:1}, {y: ...etc.]
 
+    //merges label objects and y objects
+    dataPoints = uniqueArray.map((label, i) => {
+      return {
+        ...label,
+        ...yObj[i]
+      }
+    })
+    console.log(dataPoints); // returns [{label: "2020-06-24", y: 1, x: 0}, {label: "2020-06-20", y: 2, x: 1}, {label: "2020-06-15", y: 1, x: 2}] which seems to work. 
 
     const options = {
 			theme: "light2",
