@@ -24,6 +24,7 @@ export default class ShowState extends React.Component {
     this.setState(us_state);
   }
 
+  //selects reports by state
   getFilteredReports = (reports) => {
     return reports.filter((report) => {
         if ((!this.state.stateid || this.state.stateid === report.stateid)) {
@@ -34,6 +35,7 @@ export default class ShowState extends React.Component {
     });
   }
 
+  //counts duplicate dates
   duplicateDates = (arr) => {
     const dups = {}
     arr.forEach(date => {
@@ -47,35 +49,31 @@ export default class ShowState extends React.Component {
   }
 
   render() {
-  //date & number of reports
+  //date & number of reports data
     let dataPoints =  [];
     let selectedValues = [];
     let existingValues = this.context.reports;
     let filteredReports = this.getFilteredReports(existingValues);
-
     for (let i = 0; i < filteredReports.length; i++) {
       selectedValues.push({
         label: filteredReports[i].date
       })
-    } // [{label: "2020-06-24"}...etc] contains duplicate values
-    console.log(selectedValues);
+    } // returns date values, includes duplicate dates
 
-    //remove duplicate date labels
+    //removes duplicate date values
     let jsonObject = selectedValues.map(JSON.stringify);
     let uniqueSet = new Set(jsonObject);
     let uniqueArray = Array.from(uniqueSet).map(JSON.parse);
-    console.log(uniqueArray); //[{label: "2020-06-24"}, {label: "2020-06-20"}, {label: "2020-06-15"}]
-
+    // counts date occurences
     let dateOccurences = this.duplicateDates(selectedValues);
-    console.log(dateOccurences); // {2020-06-15: 1, 2020-06-20: 2, 2020-06-24: 1}
     let dateCount = Object.values(dateOccurences);
     let yObj = [];
+    // retrieves coutn values and formats for graph
     for (let i = 0; i < dateCount.length; i++) {
       yObj.push({
         y: dateCount[i]
       });
     }
-    console.log(yObj); //[{y:1}, {y: ...etc.]
 
     //merges label objects and y objects
     dataPoints = uniqueArray.map((label, i) => {
@@ -84,7 +82,6 @@ export default class ShowState extends React.Component {
         ...yObj[i]
       }
     })
-    console.log(dataPoints); // returns [{label: "2020-06-24", y: 1, x: 0}, {label: "2020-06-20", y: 2, x: 1}, {label: "2020-06-15", y: 1, x: 2}] which seems to work. 
 
     const options = {
 			theme: "light2",
