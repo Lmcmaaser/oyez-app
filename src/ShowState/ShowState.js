@@ -105,23 +105,25 @@ export default class ShowState extends React.Component {
         <form className="form-group" onSubmit={event => this.handleSubmit(event)}>
           <fieldset>
             <legend>Select state</legend>
-              <label className="reportState" htmlFor="reportState">Select a State*</label>
-              <select
-                name="stateid"
-                required
-                aria-label="select state"
-              >
-                {this.context.us_states.map(us_state =>
-                  <option key={us_state.stateid} value={us_state.stateid}>{us_state.name}</option>
-                )}
-              </select>
-              <button
-                type="submit"
-                className="submit-button"
-                aria-label="submit-button"
-              >
-                Submit
-              </button>
+              <div className="display_as_row">
+                <label className="main-label" htmlFor="stateid">Select a State*</label>
+                <select
+                  name="stateid"
+                  required
+                  aria-label="select state"
+                >
+                  {this.context.us_states.map(us_state =>
+                    <option key={us_state.stateid} value={us_state.stateid}>{us_state.name}</option>
+                  )}
+                </select>
+                <button
+                  type="submit"
+                  className="submit-button"
+                  aria-label="submit-button"
+                >
+                  Submit
+                </button>
+              </div>
           </fieldset>
         </form>
         <div className="results_group">

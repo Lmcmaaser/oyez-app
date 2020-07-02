@@ -33,6 +33,22 @@ export default {
       "household": "2"
     },
     {
+      "reportid": "28a4d24c-bc9d-11ea-b3de-0242ac130004",
+      "stateid": "3",
+      "zipcodeid": "8e748f78-b9ae-11ea-b3de-0242ac130004",
+      "date": "2020-05-03",
+      "diagnosis_type": "doctor",
+      "household": "1"
+    },
+    {
+      "reportid": "dd16e7c0-bc9c-11ea-b3de-0242ac130004",
+      "stateid": "3",
+      "zipcodeid": "8e748f78-b9ae-11ea-b3de-0242ac130004",
+      "date": "2020-05-10",
+      "diagnosis_type": "doctor",
+      "household": "4"
+    },
+    {
       "reportid": "dbc199d2-b671-11ea-b3de-0242ac130004",
       "stateid": "44",
       "zipcodeid": "ff81a386-b9ae-11ea-b3de-0242ac130004",

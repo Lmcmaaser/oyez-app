@@ -87,7 +87,7 @@ export default class ShowZipCode extends React.Component {
 			exportEnabled: true,
 			animationEnabled: true,
 			title: {
-				text: "Diagnosis Types"
+				text: "Diagnosis Type Breakdown"
 			},
 			data: [{
 				type: "pie",
@@ -105,28 +105,27 @@ export default class ShowZipCode extends React.Component {
       <form className="form-group" onSubmit={event => this.handleSubmit(event)}>
         <fieldset>
           <legend>Report Form</legend>
-          <label className="zip" htmlFor="zip">Select a Zip Code*</label>
-          <select
-            name="zipcodeid"
-            required
-            aria-label="select zip code"
-          >
-            {this.context.zipcodes.map(zipcode =>
-              <option key={zipcode.zipcodeid} value={zipcode.zipcodeid}>{zipcode.code}</option>
-            )}
-          </select>
-          <button
-            type="submit"
-            className="submit-button"
-            aria-label="submit-button"
-          >
-            Submit
-          </button>
+            <div className="display_as_row">
+              <label className="main-label" htmlFor="zipcodeid">Select a Zip Code*</label>
+              <select
+                name="zipcodeid"
+                required
+                aria-label="select zip code"
+              >
+                {this.context.zipcodes.map(zipcode =>
+                  <option key={zipcode.zipcodeid} value={zipcode.zipcodeid}>{zipcode.code}</option>
+                )}
+              </select>
+              <button
+                type="submit"
+                className="submit-button"
+                aria-label="submit-button"
+              >
+                Submit
+              </button>
+            </div>
         </fieldset>
       </form>
-      <h3>
-        All Reported Instances
-      </h3>
         <div className="results_group">
           <div className="canvas">
             <CanvasJSChart options = {options}

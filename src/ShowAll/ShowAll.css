@@ -1,7 +1,9 @@
 /*mobile view*/
 h3 {
+  display: flex;
+  text-align: center;
   margin: 0px 0px 10px 0px;
-  font-size: 28px;
+  font-size: 22px;
 }
 
 .results_group {
@@ -15,5 +17,6 @@ h3 {
 @media screen and (min-width: 600px) {
   h3 {
     margin: 10px 0px 10px 0px;
+    font-size: 28px;
   }
 }

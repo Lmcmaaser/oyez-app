@@ -115,7 +115,7 @@ export default class Report extends React.Component {
         <form className="form-group" onSubmit={event => this.handleSubmit(event)}>
           <fieldset>
             <legend>Report Form</legend>
-              <label className="reportState" htmlFor="reportState">What state do you live in? *</label>
+              <label className="main-label" htmlFor="stateid">What state do you live in?</label>
               <select
                 name="stateid"
                 required
@@ -125,7 +125,7 @@ export default class Report extends React.Component {
                   <option key={us_state.stateid} value={us_state.stateid}>{us_state.name}</option>
                 )}
               </select>
-              <label>What is your zip code?</label>
+              <label className="main-label">What is your zip code?</label>
                 <input
                   type="text"
                   required
@@ -138,7 +138,7 @@ export default class Report extends React.Component {
                   {this.state.code.touched && (
                     <ValidationError message={zipCodeError} />
                   )}
-              <label className="raido_label" htmlFor="diagnosis_type">
+              <label className="main-label" htmlFor="diagnosis_type">
                 How were you diagnosed?
               </label>
                 <label htmlFor="container">
@@ -162,7 +162,7 @@ export default class Report extends React.Component {
                     onChange={event => this.updateDiagnosisType(event.target.value)}
                   />
                   <span className="checkmark"></span>
-                A doctor's professional assessment of my symptoms (diagnosis made without a test)</label>
+                Doctor's professional assessment (diagnosis made without a test)</label>
                 <label htmlFor="container">
                   <input
                     type="radio"
@@ -173,9 +173,9 @@ export default class Report extends React.Component {
                     onChange={event => this.updateDiagnosisType(event.target.value)}
                   />
                   <span className="checkmark"></span>
-                I self-diagnosed based on my symptoms</label>
-                <div>If you were tested and diagnosed by your doctor, select the tested option.</div>
-              <label>When were you diagnosed? </label>
+                Self-diagnosis based on my symptoms</label>
+                <div>* If you were tested and diagnosed by your doctor, select the tested option.</div>
+              <label className="main-label">When were you diagnosed? </label>
                 <input
                   type="date"
                   required
@@ -185,7 +185,7 @@ export default class Report extends React.Component {
                   value={this.state.date.value}
                   onChange={event => this.updateDate(event.target.value)}
                 />
-              <label>
+              <label className="main-label">
                 How many people live with you in your household?
               </label>
                 <input
