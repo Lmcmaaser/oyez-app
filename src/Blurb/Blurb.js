@@ -5,13 +5,14 @@ export default class Blurb extends Component {
   render() {
     return (
       <div>
-        <h3>How to Use This App</h3>
+        <h3>How to Use Oyez!</h3>
         <div className="instructions">
-          <p className="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p className="info">Oyez is designed to help you track the spread of COVID-19 in your local community.</p>
           <p className="info">
-            Augue interdum velit euismod in pellentesque.
+            It tracks COVID-19 cases by state and zipcode, giving you the tools to better protect you and your family when going out in public!
           </p>
-          <p className="info">Vestibulum rhoncus est pellentesque elit ullamcorper. Id aliquet risus feugiat in.</p>
+          <p className="info">Add a report or track local cases by using the navigation bar.</p>
+          <p className="info">* Data on Oyez is self-reported and may not reflect the actual data in the area.</p>
         </div>
       </div>
     )

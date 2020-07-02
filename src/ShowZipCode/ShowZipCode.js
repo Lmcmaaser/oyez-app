@@ -80,7 +80,7 @@ export default class ShowZipCode extends React.Component {
 
     // add desired objects to dataPoints array
     dataPoints.push(testPoints, doctorPoints, selfPoints);
-    console.log(dataPoints); 
+    console.log(dataPoints);
 
 
     const options = {
@@ -127,7 +127,7 @@ export default class ShowZipCode extends React.Component {
       <h3>
         All Reported Instances
       </h3>
-        <div className='results_group'>
+        <div className="results_group">
           <div className="canvas">
             <CanvasJSChart options = {options}
               onRef={ref => this.chart = ref}

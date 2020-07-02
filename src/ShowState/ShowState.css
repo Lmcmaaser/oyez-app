@@ -1,0 +1,22 @@
+/*mobile view*/
+h3 {
+  margin: 10px;
+  font-size: 20px;
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.results_group {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  padding: 10px;
+}
+
+/*desktop view*/
+@media screen and (min-width: 600px) {}

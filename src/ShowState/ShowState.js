@@ -124,7 +124,7 @@ export default class ShowState extends React.Component {
               </button>
           </fieldset>
         </form>
-        <div className='results_group'>
+        <div className="results_group">
           <div className="canvas">
             <CanvasJSChart options = {options}
 				      onRef={ref => this.chart = ref}
