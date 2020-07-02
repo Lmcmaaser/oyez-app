@@ -51,7 +51,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <header className="App-header" role="banner">
-          <h1>Oyez</h1>
+          <h1>Oyez!</h1>
         </header>
           <ApiContext.Provider value={contextValue}>
             <nav>
