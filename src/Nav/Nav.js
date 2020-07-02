@@ -17,10 +17,10 @@ export default class Nav extends React.Component {
           View All
         </Link>
         <Link to='/state'>
-          View by State
+          View State
         </Link>
         <Link to='/zipcode'>
-          View by Zip Code
+          View Zip Code
         </Link>
       </Content>
     )

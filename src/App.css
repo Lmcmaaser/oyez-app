@@ -21,7 +21,7 @@ h1 {
   flex-grow: 2;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
+  padding: 15px;
   font-size: 28px; /* Increased text to enable scrolling */
 }
 
@@ -34,17 +34,8 @@ h1 {
   }
 
   .main_content {
-    margin-left: 100px; /* Same as the width of the sidenav */
+    margin-left: 120px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
-  }
-
-  .info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    margin: 10px;
   }
 }
