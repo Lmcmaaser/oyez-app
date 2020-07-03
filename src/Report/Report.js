@@ -59,6 +59,7 @@ export default class Report extends React.Component {
     }
     this.context.addReport(report);
     this.resetForm();
+    this.props.history.push('/');
   }
 
   resetForm() {
