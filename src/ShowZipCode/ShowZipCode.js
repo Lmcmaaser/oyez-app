@@ -1,5 +1,6 @@
 import React from 'react';
 import ApiContext from '../ApiContext';
+import ValidationError from '../ValidationError';
 import CanvasJSReact from '../canvasjs-2.3.2/canvasjs.react';
 let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 //import './ShowZipCode.css';
@@ -10,25 +11,25 @@ export default class ShowZipCode extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      zipcodeid: {
+      code: {
         value: '',
         touched: false
-      }
+      },
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const zip = {
-      zipcodeid: event.target.zipcodeid.value,
+      code: event.target.code.value
     }
-    console.log(zip); //shows: zipcodeid: "8e748f78-b9ae-11ea-b3de-0242ac130004"}
     this.setState(zip);
+    console.log(zip);
   }
 
   getFilteredReports = (reports) => {
     return reports.filter((report) => {
-        if ((!this.state.zipcodeid || this.state.zipcodeid === report.zipcodeid)) {
+        if ((!this.state.code|| this.state.code === report.code)) {
           return true;
         } else {
           return false;
@@ -43,6 +44,7 @@ export default class ShowZipCode extends React.Component {
     let testCount = 0;
     let doctorCount = 0;
     let filteredReports = this.getFilteredReports(existingValues)
+    console.log(this.state.code);
     let labelTest = {label: "test"};
     let labelDoc = {label: "doctor"};
     let labelSelf = {label: "self"};
@@ -50,12 +52,10 @@ export default class ShowZipCode extends React.Component {
     let doctorPoints = {};
     let selfPoints = {};
     let count = 0;
-
     //count how many reports total for zip code
     for (let i = 0; i < filteredReports.length; i++) {
       count++
     }
-    console.log(count);
 
     // count how many reports for each diagnosis type
     for (let i = 0; i < filteredReports.length; i++) {
@@ -82,7 +82,6 @@ export default class ShowZipCode extends React.Component {
     dataPoints.push(testPoints, doctorPoints, selfPoints);
     console.log(dataPoints);
 
-
     const options = {
 			exportEnabled: true,
 			animationEnabled: true,
@@ -106,16 +105,14 @@ export default class ShowZipCode extends React.Component {
         <fieldset>
           <legend>Report Form</legend>
             <div className="display_as_row">
-              <label className="main-label" htmlFor="zipcodeid">Select a Zip Code*</label>
-              <select
-                name="zipcodeid"
+              <label className="main-label" htmlFor="code">Input a Zip Code *</label>
+              <input
+                type="text"
+                name="code"
+                id="code"
+                aria-label="input zip code"
                 required
-                aria-label="select zip code"
-              >
-                {this.context.zipcodes.map(zipcode =>
-                  <option key={zipcode.zipcodeid} value={zipcode.zipcodeid}>{zipcode.code}</option>
-                )}
-              </select>
+              />
               <button
                 type="submit"
                 className="submit-button"

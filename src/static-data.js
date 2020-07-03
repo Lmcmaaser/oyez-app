@@ -3,7 +3,7 @@ export default {
     {
       "reportid": "39ad3418-b58a-11ea-b3de-0242ac130004",
       "stateid": "44",
-      "zipcodeid": "74612e16-b9ae-11ea-b3de-0242ac130004",
+      "code": "73301",
       "date": "2020-06-24",
       "diagnosis_type": "test",
       "household": "5"
@@ -11,7 +11,7 @@ export default {
     {
       "reportid": "b74fd9d2-b591-11ea-b3de-0242ac130004",
       "stateid": "44",
-      "zipcodeid": "74612e16-b9ae-11ea-b3de-0242ac130004",
+      "code": "73301",
       "date": "2020-06-20",
       "diagnosis_type": "self",
       "household": "3"
@@ -19,7 +19,7 @@ export default {
     {
       "reportid": "ff81a386-b9ae-11ea-b3de-0242ac130004",
       "stateid": "44",
-      "zipcodeid": "74612e16-b9ae-11ea-b3de-0242ac130004",
+      "code": "73301",
       "date": "2020-06-20",
       "diagnosis_type": "self",
       "household": "3"
@@ -27,7 +27,7 @@ export default {
     {
       "reportid": "a469b766-b591-11ea-b3de-0242ac130004",
       "stateid": "3",
-      "zipcodeid": "8e748f78-b9ae-11ea-b3de-0242ac130004",
+      "code": "85308",
       "date": "2020-05-03",
       "diagnosis_type": "doctor",
       "household": "2"
@@ -35,7 +35,7 @@ export default {
     {
       "reportid": "28a4d24c-bc9d-11ea-b3de-0242ac130004",
       "stateid": "3",
-      "zipcodeid": "8e748f78-b9ae-11ea-b3de-0242ac130004",
+      "code": "85308",
       "date": "2020-05-03",
       "diagnosis_type": "doctor",
       "household": "1"
@@ -43,7 +43,7 @@ export default {
     {
       "reportid": "dd16e7c0-bc9c-11ea-b3de-0242ac130004",
       "stateid": "3",
-      "zipcodeid": "8e748f78-b9ae-11ea-b3de-0242ac130004",
+      "code": "85308",
       "date": "2020-05-10",
       "diagnosis_type": "doctor",
       "household": "4"
@@ -51,24 +51,10 @@ export default {
     {
       "reportid": "dbc199d2-b671-11ea-b3de-0242ac130004",
       "stateid": "44",
-      "zipcodeid": "ff81a386-b9ae-11ea-b3de-0242ac130004",
+      "code": "75202",
       "date": "2020-06-15",
       "diagnosis_type": "test",
       "household": "1"
-    }
-  ],
-  "zipcodes": [
-    {
-      "zipcodeid": "74612e16-b9ae-11ea-b3de-0242ac130004",
-      "code": "73301"
-    },
-    {
-      "zipcodeid": "ff81a386-b9ae-11ea-b3de-0242ac130004",
-      "code": "75202"
-    },
-    {
-      "zipcodeid": "8e748f78-b9ae-11ea-b3de-0242ac130004",
-      "code": "85308"
     }
   ],
   "us_states": [

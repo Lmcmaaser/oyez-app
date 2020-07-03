@@ -34,19 +34,11 @@ export default class App extends Component {
     })
   }
 
-  handleAddZipCode = zipcode => {
-    this.setState({
-      zipcodes: this.state.zipcodes.concat(zipcode)
-    })
-  }
-
   render () {
     const contextValue = {
       us_states: this.state.us_states,
-      zipcodes: this.state.zipcodes,
       reports: this.state.reports,
-      addReport: this.handleAddReport,
-      addZipCode: this.handleAddZipCode
+      addReport: this.handleAddReport
     }
     return (
       <div className="App">

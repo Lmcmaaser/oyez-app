@@ -47,24 +47,17 @@ export default class Report extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { diagnosis_type, date, household} = this.state;
-    const { code } = this.state;
+    const { code, diagnosis_type, date, household} = this.state;
     const uuid = uuidv4();
-    const zipcode = {
-      zipcodeid: uuid,
-      code: code.value
-    }
     const report = {
       reportid: uuid,
       stateid: event.target.stateid.value,
+      code: code.value,
       diagnosis_type: diagnosis_type.value,
       date: date.value,
       household: household.value
     }
-    console.log(report);
-    console.log(zipcode);
     this.context.addReport(report);
-    this.context.addZipCode(zipcode);
     this.resetForm();
   }
 
